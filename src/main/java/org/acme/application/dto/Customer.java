@@ -1,6 +1,8 @@
 package org.acme.application.dto;
 
 
+import org.acme.domain.model.ProfilePhoto;
+
 import java.util.List;
 
 public record Customer(String customerId, List<String> photos) {

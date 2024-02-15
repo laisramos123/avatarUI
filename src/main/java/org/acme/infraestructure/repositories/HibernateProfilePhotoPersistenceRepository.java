@@ -8,10 +8,10 @@ import org.acme.domain.repositories.ProfilePhotoPersistenceRepository;
 import org.acme.infraestructure.repositories.entities.CustomerProfilePhoto;
 
 @ApplicationScoped
-public class HibernateProfilePhotoPersistence implements ProfilePhotoPersistenceRepository {
+public class HibernateProfilePhotoPersistenceRepository implements ProfilePhotoPersistenceRepository {
     private final EntityManager entityManager;
 
-    public HibernateProfilePhotoPersistence(EntityManager entityManager) {
+    public HibernateProfilePhotoPersistenceRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
