@@ -3,6 +3,7 @@ package org.acme.infraestructure.repositories;
 import jakarta.enterprise.context.RequestScoped;
 import org.acme.domain.model.ProfilePhoto;
 import org.acme.domain.repositories.ProfilePhotoRepository;
+import org.acme.infraestructure.rest.StableDiffusionService;
 
 import java.util.Map;
 
@@ -27,7 +28,17 @@ public class UnitOfWorkProfilePhotoRepository implements ProfilePhotoRepository 
 
     @Override
     public void commit() {
+        entities.forEach( (customerId, profilePhoto) ->{
+            try {
+                hibernateProfilePhotoPersistenceRepository.safe(customerId,profilePhoto);
+                var generated = stableDiffusionService.generate(profilePhoto)
 
+            }catch (Exception e){
+                logger.getLogger(getClass()).error(e);
+            }
+                }
+
+        );
     }
 
     @Override
