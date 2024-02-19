@@ -4,6 +4,7 @@ import jakarta.enterprise.context.RequestScoped;
 import org.acme.domain.model.ProfilePhoto;
 import org.acme.domain.repositories.ProfilePhotoRepository;
 import org.acme.infraestructure.rest.StableDiffusionService;
+import org.jboss.logging.Logger;
 
 import java.util.Map;
 
@@ -31,10 +32,10 @@ public class UnitOfWorkProfilePhotoRepository implements ProfilePhotoRepository 
         entities.forEach( (customerId, profilePhoto) ->{
             try {
                 hibernateProfilePhotoPersistenceRepository.safe(customerId,profilePhoto);
-                var generated = stableDiffusionService.generate(profilePhoto)
+                var generated = stableDiffusionService.generate(profilePhoto);
 
             }catch (Exception e){
-                logger.getLogger(getClass()).error(e);
+                Logger.getLogger(getClass()).error(e);
             }
                 }
 

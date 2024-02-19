@@ -12,6 +12,7 @@ import org.jboss.resteasy.reactive.RestForm;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Path("customers")
@@ -22,6 +23,12 @@ public class CustomerResource {
     public CustomerResource(ApplicationService service) {
         this.service = service;
     }
+
+    @GET
+    public List<Customer> searchCustomers(){
+        return service.searchCustomers();
+    }
+
     @GET
     @Path("/{id}")
     public Customer getCustomer(@PathParam("id") String id){
